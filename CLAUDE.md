@@ -37,6 +37,24 @@ Wenn der Nutzer ein Bild oder PDF einer Schulbuchseite schickt (ohne weitere Anw
 - Die .xopp-Datei ist gzip-komprimiertes XML (Xournal++-Format)
 - Erstelle das XML, dann komprimiere es mit gzip zu .xopp
 
+## Grafiken, Tabellen und Diagramme
+- **NIEMALS** ASCII-Art oder Text-Zeichen-Grafiken in Xournal-Textfeldern verwenden
+- Stattdessen: Mit Python (matplotlib/Pillow) als PNG erstellen und als base64 `<image>`-Tag einbetten
+- Xournal++ Image-Format: `<image left="X" top="Y" right="X2" bottom="Y2">BASE64_PNG</image>`
+- Bilder beamer-tauglich: min. 150 DPI, klare Linien, große Beschriftung
+
+## Buchaufgaben als Bildausschnitte
+- Wenn der Anhang als Bilddatei vorliegt: relevante Aufgaben mit Python/Pillow ausschneiden (crop) und einbetten
+- Wenn der Anhang nur inline im Chat vorliegt: Aufgabentexte als Textblöcke übernehmen, ergänzende Grafiken mit Python nachbauen
+- Jede verwendete Buchaufgabe muss als Bild oder vollständiger Text an der passenden Stelle erscheinen
+- Unter jedem Ausschnitt: ausreichend Freiraum für Schüler
+
+## Seitenränder (kritisch!)
+- Nutzbarer Bereich: x=14.17 bis x=580.97, y=28.34 bis y=827.00
+- Max. Zeichen pro Zeile: size 12→75, size 11→80, size 10→88, size 9→95
+- Text manuell umbrechen – kein Textblock darf über den Rand hinausragen
+- Vertikalen Überlauf prüfen: letzter Block darf nicht unter y=827 fallen
+
 ## Standardannahmen (wenn nicht anders angegeben)
 - Klasse: Nachfragen, wenn nicht erkennbar
 - Doppelstunde: 90 Minuten
