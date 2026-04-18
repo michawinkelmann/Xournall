@@ -31,7 +31,8 @@ class LoesungenPDF(FPDF):
         if os.path.exists(dejavu):
             self.add_font('DejaVu', '', dejavu)
             self.add_font('DejaVu', 'B', dejavu_bold)
-            self.add_font('DejaVu', 'I', dejavu_italic)
+            italic_file = dejavu_italic if os.path.exists(dejavu_italic) else dejavu
+            self.add_font('DejaVu', 'I', italic_file)
             self.default_font = 'DejaVu'
         else:
             self.default_font = 'Helvetica'
